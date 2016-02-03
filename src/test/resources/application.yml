@@ -1,0 +1,18 @@
+abc: qwerty
+cf:
+  catalog:
+    serviceName: name
+    serviceId: id
+    serviceDescription: desc
+    baseId: baseId
+    plans:
+      - id: planFirstID
+        name: planFirst
+        description: bare
+        free: true
+      - id: planSecondID
+        name: planSecond
+        description: shared
+        free: true
+    metadata:
+      imageUrl: imageEncoded
