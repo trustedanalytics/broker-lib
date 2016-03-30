@@ -103,7 +103,7 @@ public class CatalogConfig {
   public Catalog catalog() {
     return new Catalog(Arrays.asList(
         new ServiceDefinition(serviceId, serviceName,
-            "A simple zookeeper broker", true, true, getBrokerPlans(), null, getServiceDefinitionMetadata(),
+            serviceDescription, true, true, getBrokerPlans(), null, getServiceDefinitionMetadata(),
             Arrays.asList(SYSLOG_DRAIN),null)));
   }
 
