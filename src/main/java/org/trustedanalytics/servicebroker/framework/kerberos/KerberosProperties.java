@@ -22,9 +22,9 @@ import java.util.Map;
 
 public final class KerberosProperties {
 
-  private final static String KDC_PROPERTY = "kdc";
-  private final static String REALM_PROPERTY = "krealm";
-  private final static String CERT_PROPERTY = "cacert";
+  private static final String KDC_PROPERTY = "kdc";
+  private static final String REALM_PROPERTY = "krealm";
+  private static final String CERT_PROPERTY = "cacert";
 
   private final String kdc;
   private final String realm;

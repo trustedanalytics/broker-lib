@@ -41,7 +41,7 @@ import org.trustedanalytics.servicebroker.framework.kerberos.KerberosProperties;
 @Configuration
 public class ZookeeperStoreConfig {
 
-  private final static Logger LOGGER = LoggerFactory.getLogger(ZookeeperStoreConfig.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(ZookeeperStoreConfig.class);
 
   @Value("${store.cluster:}")
   String zkClusterHosts;

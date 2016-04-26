@@ -27,15 +27,15 @@ class ServicePlanDefinitionAndCatalogMerger {
   private final Map<String, ServicePlanDefinition> planNameToPlanDefinition;
   private final Catalog catalog;
 
+  private ServicePlanDefinitionAndCatalogMerger(Map<String, ServicePlanDefinition> planNameToPlanDefinition,
+                                                Catalog catalog) {
+    this.planNameToPlanDefinition = planNameToPlanDefinition;
+    this.catalog = catalog;
+  }
+
   public static ServicePlanDefinitionAndCatalogMerger merge(Map<String, ServicePlanDefinition> planNameToPlanDefinition,
       Catalog catalog) {
     return new ServicePlanDefinitionAndCatalogMerger(planNameToPlanDefinition, catalog);
-  }
-
-  private ServicePlanDefinitionAndCatalogMerger(Map<String, ServicePlanDefinition> planNameToPlanDefinition,
-      Catalog catalog) {
-    this.planNameToPlanDefinition = planNameToPlanDefinition;
-    this.catalog = catalog;
   }
 
   public Map<String, ServicePlanDefinition> getPlanIdToPlanDefinitionMap() {

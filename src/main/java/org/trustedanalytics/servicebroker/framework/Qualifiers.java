@@ -19,4 +19,6 @@ public final class Qualifiers {
   public static final String SERVICE_INSTANCE = "serviceInstance";
   public static final String SERVICE_INSTANCE_BINDING = "serviceInstanceBinding";
   public static final String BROKER_STORE = "brokerStore";
+
+  private Qualifiers() {}
 }

@@ -18,4 +18,6 @@ package org.trustedanalytics.servicebroker.framework;
 
 public final class Profiles {
   public static final String CLOUD = "cloud";
+
+  private Profiles() {}
 }

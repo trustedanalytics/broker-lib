@@ -44,6 +44,10 @@ public class CatalogConfig {
   @NotNull private String serviceDescription;
   @NotNull private String baseId;
 
+  private String SYSLOG_DRAIN = "syslog_drain";
+
+  private static final String IMAGE_URL = "imageUrl";
+
   public Metadata getMetadata() {
     return metadata;
   }
@@ -92,12 +96,6 @@ public class CatalogConfig {
   public void setPlans(List<ServicePlan> plans) {
     this.plans = plans;
   }
-
-  private String SYSLOG_DRAIN = "syslog_drain";
-
-  private static final String IMAGE_URL = "imageUrl";
-
-  private static final String PROVISIONING = "isProvisioning";
 
   @Bean
   public Catalog catalog() {
