@@ -13,19 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.trustedanalytics.servicebroker.framework.service;
-
-import java.util.Map;
-import java.util.Optional;
+package org.trustedanalytics.servicebroker.framework.store;
 
 import org.cloudfoundry.community.servicebroker.exception.ServiceBrokerException;
-import org.cloudfoundry.community.servicebroker.exception.ServiceInstanceExistsException;
-import org.cloudfoundry.community.servicebroker.model.ServiceInstance;
 
-public interface ServicePlanDefinition {
+import java.io.IOException;
+import java.util.Map;
+import java.util.UUID;
 
-  default void provision(ServiceInstance serviceInstance, Optional<Map<String, Object>> parameters)
-      throws ServiceInstanceExistsException, ServiceBrokerException {}
+public interface CredentialsStore {
 
-  Map<String, Object> bind(ServiceInstance serviceInstance) throws ServiceBrokerException;
+  void save(Map<String, Object> credentials, UUID instanceId) throws ServiceBrokerException;
+  Map<String, Object> get(UUID instanceId) throws ServiceBrokerException;
 }

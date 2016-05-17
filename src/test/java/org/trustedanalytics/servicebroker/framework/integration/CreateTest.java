@@ -91,7 +91,7 @@ public class CreateTest {
 
     //assert
     verify(serviceStore).save(any(), eq(actualInstance));
-    verify(planFirst).provision(actualInstance);
+    verify(planFirst).provision(actualInstance, Optional.ofNullable(request.getParameters()));
     assertThat(actualInstance, deeplyEqualTo(expectedInstance));
   }
 
@@ -125,4 +125,5 @@ public class CreateTest {
     ServiceInstanceBinding expectedBinding = getServiceBinding(bindReq, credentials);
     assertThat(actualBinding, deeplyEqualTo(expectedBinding));
   }
+
 }

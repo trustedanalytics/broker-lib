@@ -17,11 +17,11 @@ package org.trustedanalytics.servicebroker.framework.service;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.trustedanalytics.servicebroker.test.cloudfoundry.CfModelsFactory.getCreateInstanceRequest;
 import static org.trustedanalytics.servicebroker.test.cloudfoundry.CfModelsFactory.getServiceInstance;
+
+import java.util.Optional;
 
 import org.cloudfoundry.community.servicebroker.exception.ServiceBrokerException;
 import org.cloudfoundry.community.servicebroker.model.CreateServiceInstanceRequest;
@@ -71,7 +71,7 @@ public class DefaultServiceInstanceServiceTest {
     ServiceInstance actualInstance = service.createServiceInstance(createRequest);
 
     //assert
-    verify(spd1).provision(instance);
+    verify(spd1).provision(instance, Optional.ofNullable(createRequest.getParameters()));
     assertThat(actualInstance, equalTo(instance));
   }
 

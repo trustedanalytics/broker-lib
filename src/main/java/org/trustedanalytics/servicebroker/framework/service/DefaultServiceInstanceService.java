@@ -43,7 +43,7 @@ public class DefaultServiceInstanceService extends ForwardingServiceInstanceServ
     String planId = serviceInstance.getPlanId();
     Optional.ofNullable(planIdToPlanDefinition.get(planId))
         .orElseThrow(() -> new ServiceBrokerException("Service plan '" + planId + "' definition not found"))
-        .provision(serviceInstance);
+        .provision(serviceInstance, Optional.ofNullable(request.getParameters()));
     return serviceInstance;
   }
 }

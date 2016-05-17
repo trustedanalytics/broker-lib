@@ -24,11 +24,13 @@ import java.lang.annotation.Target;
 import org.springframework.context.annotation.Import;
 import org.trustedanalytics.servicebroker.framework.store.BrokerStoreConfig;
 import org.trustedanalytics.servicebroker.framework.store.SerializationConfig;
+import org.trustedanalytics.servicebroker.framework.store.zookeeper.ZookeeperCredentialsStore;
 import org.trustedanalytics.servicebroker.framework.store.zookeeper.ZookeeperStoreConfig;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
-@Import({BrokerStoreConfig.class, SerializationConfig.class, ZookeeperStoreConfig.class})
+@Import({BrokerStoreConfig.class, SerializationConfig.class, ZookeeperStoreConfig.class,
+    ZookeeperCredentialsStore.class})
 public @interface EnableZookeeperBrokerStore {
 }
