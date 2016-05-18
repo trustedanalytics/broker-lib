@@ -30,13 +30,11 @@ import org.trustedanalytics.cfbroker.store.zookeeper.service.ZookeeperClient;
 import org.trustedanalytics.servicebroker.framework.Qualifiers;
 import org.trustedanalytics.servicebroker.framework.store.CredentialsStore;
 
-import com.google.common.collect.ImmutableMap;
-
 @Component
 public class ZookeeperCredentialsStore implements CredentialsStore {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(ZookeeperCredentialsStore.class);
-  private final static String CREDENTIALS = "/%s/metadata";
+  private static final String CREDENTIALS = "/%s/metadata";
 
   @Autowired
   @Qualifier(value = Qualifiers.BROKER_STORE)
