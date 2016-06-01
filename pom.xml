@@ -7,11 +7,11 @@
     <parent>
         <groupId>org.trustedanalytics</groupId>
         <artifactId>project-template</artifactId>
-        <version>0.4.13</version>
+        <version>0.5.0</version>
     </parent>
 
     <artifactId>broker-lib</artifactId>
-    <version>0.6.1</version>
+    <version>0.6.2</version>
 
     <properties>
         <brokerVersion>2.6.0</brokerVersion>
@@ -29,7 +29,6 @@
                 <artifactId>license-maven-plugin</artifactId>
                 <version>2.6</version>
                 <configuration>
-                    <header>license/license_header.txt</header>
                     <includes>
                         <include>src/**/*.java</include>
                     </includes>
