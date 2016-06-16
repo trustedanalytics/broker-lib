@@ -15,13 +15,16 @@
  */
 package org.trustedanalytics.servicebroker.framework.store;
 
-import org.cloudfoundry.community.servicebroker.exception.ServiceBrokerException;
-
 import java.util.Map;
 import java.util.UUID;
+
+import org.cloudfoundry.community.servicebroker.exception.ServiceBrokerException;
 
 public interface CredentialsStore {
 
   void save(Map<String, Object> credentials, UUID instanceId) throws ServiceBrokerException;
+
+  boolean exists(UUID instanceId) throws ServiceBrokerException;
+
   Map<String, Object> get(UUID instanceId) throws ServiceBrokerException;
 }

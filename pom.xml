@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>broker-lib</artifactId>
-    <version>0.6.2</version>
+    <version>0.6.3</version>
 
     <properties>
         <brokerVersion>2.6.0</brokerVersion>
@@ -57,7 +57,7 @@
         <dependency>
             <groupId>org.trustedanalytics.servicebroker.repository</groupId>
             <artifactId>zookeeper-broker-store</artifactId>
-            <version>0.5.10</version>
+            <version>0.6.2</version>
         </dependency>
         <dependency>
             <groupId>javax.validation</groupId>

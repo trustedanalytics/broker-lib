@@ -52,6 +52,17 @@ public class ZookeeperCredentialsStore implements CredentialsStore {
   }
 
   @Override
+  public boolean exists(UUID instanceId) throws ServiceBrokerException {
+    String path = String.format(CREDENTIALS, instanceId.toString());
+    try {
+      LOGGER.info("credentials exists(" + path + ")");
+      return zkClient.exists(path);
+    } catch (IOException e)  {
+      throw new ServiceBrokerException("Can't read credentials form: " + path, e);
+    }
+  }
+
+  @Override
   public Map<String, Object> get(UUID instanceId) throws ServiceBrokerException {
     String path = String.format(CREDENTIALS, instanceId.toString());
     try {
