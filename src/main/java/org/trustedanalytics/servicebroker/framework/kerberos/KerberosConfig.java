@@ -18,26 +18,36 @@ package org.trustedanalytics.servicebroker.framework.kerberos;
 
 import java.io.IOException;
 
+import com.google.common.base.Strings;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.trustedanalytics.hadoop.config.client.*;
 import org.trustedanalytics.servicebroker.framework.Profiles;
 
+import javax.validation.constraints.NotNull;
+
 @Configuration
 public class KerberosConfig {
+
+  @Value("${krb.realm:}")
+  @NotNull
+  private String realm;
+
+  @Value("${krb.kdc:}")
+  @NotNull
+  private String kdc;
 
   @Bean
   @Profile(Profiles.CLOUD)
   public KerberosProperties getKerberosProperties() throws IOException {
-    AppConfiguration helper = Configurations.newInstanceFromEnv();
-    ServiceInstanceConfiguration krbConf =
-        helper.getServiceConfig(ServiceType.KERBEROS_TYPE);
-    return new KerberosProperties(
-        krbConf.getProperty(Property.KRB_KDC).get(),
-        krbConf.getProperty(Property.KRB_REALM).get(),
-        krbConf.getProperty(Property.KRB_CACERT).get(),
-        Boolean.valueOf(krbConf.getProperty(Property.KRB_MODE).get()));
+    if(!Strings.isNullOrEmpty(realm) && !Strings.isNullOrEmpty(kdc)) {
+      return new KerberosProperties(kdc, realm, true);
+    }
+    else {
+      return new KerberosProperties(kdc, realm, false);
+    }
   }
 
 }

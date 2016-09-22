@@ -69,13 +69,6 @@ public class ZookeeperStoreConfig {
   }
 
   private ZookeeperClient getZKClient(String brokerNode, String zkClusterHosts) throws IOException, LoginException {
-    AppConfiguration confHelper = Configurations.newInstanceFromEnv();
-    Optional<ServiceInstanceConfiguration> zkConf = confHelper.getServiceConfigIfExists(ServiceType.ZOOKEEPER_TYPE);
-    String zkClusterHostsConfig = zkClusterHosts;
-    if(zkConf.isPresent()) {
-      zkClusterHostsConfig = zkConf.get().getProperty(Property.ZOOKEPER_URI).get();
-    }
-
     if (kerberosProperties.isKerberosEnabled()) {
       LOGGER.info("Found kerberos configuration - trying to authenticate");
       KrbLoginManager loginManager =
@@ -86,7 +79,7 @@ public class ZookeeperStoreConfig {
       LOGGER.warn("kerberos configuration empty or invalid - will not try to authenticate.");
     }
 
-    return new ZookeeperClientBuilder(zkClusterHostsConfig, user, password, brokerNode).build();
+    return new ZookeeperClientBuilder(zkClusterHosts, user, password, brokerNode).build();
   }
 
 }

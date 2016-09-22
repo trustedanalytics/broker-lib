@@ -36,7 +36,7 @@ public class TestConfig {
 
   @Bean
   public KerberosProperties getKerberosProperties() throws IOException {
-    return new KerberosProperties("kdc", "realm", "cacert", false);
+    return new KerberosProperties("kdc", "realm", false);
   }
 
   @Bean

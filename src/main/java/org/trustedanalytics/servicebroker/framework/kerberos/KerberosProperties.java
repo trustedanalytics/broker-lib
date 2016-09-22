@@ -22,23 +22,14 @@ import java.util.Map;
 
 public final class KerberosProperties {
 
-  private static final String KDC_PROPERTY = "kdc";
-  private static final String REALM_PROPERTY = "krealm";
-  private static final String CERT_PROPERTY = "cacert";
-
   private final String kdc;
   private final String realm;
-  private final String cacert;
-  private final Map<String, Object> credentials;
   private final boolean isKerberosEnabled;
 
-  public KerberosProperties(String kdc, String realm, String cacert, boolean isKerberosEnabled) {
+  public KerberosProperties(String kdc, String realm, boolean isKerberosEnabled) {
     this.kdc = kdc;
     this.realm = realm;
-    this.cacert = cacert;
     this.isKerberosEnabled = isKerberosEnabled;
-    this.credentials =
-        ImmutableMap.of(KDC_PROPERTY, kdc, REALM_PROPERTY, realm, CERT_PROPERTY, cacert);
   }
 
   public String getKdc() {
@@ -47,10 +38,6 @@ public final class KerberosProperties {
 
   public String getRealm() {
     return realm;
-  }
-
-  public Map<String, Object> getCredentials() {
-    return credentials;
   }
 
   public boolean isKerberosEnabled() {
