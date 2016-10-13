@@ -17,7 +17,8 @@
 package org.trustedanalytics.servicebroker.framework;
 
 public final class Profiles {
-  public static final String CLOUD = "cloud";
+  public static final String KERBEROS = "kerberos";
+  public static final String SIMPLE = "simple";
 
   private Profiles() {}
 }

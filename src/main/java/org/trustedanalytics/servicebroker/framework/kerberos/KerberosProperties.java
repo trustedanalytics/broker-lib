@@ -16,20 +16,14 @@
 
 package org.trustedanalytics.servicebroker.framework.kerberos;
 
-import com.google.common.collect.ImmutableMap;
-
-import java.util.Map;
-
 public final class KerberosProperties {
 
   private final String kdc;
   private final String realm;
-  private final boolean isKerberosEnabled;
 
-  public KerberosProperties(String kdc, String realm, boolean isKerberosEnabled) {
+  public KerberosProperties(String kdc, String realm) {
     this.kdc = kdc;
     this.realm = realm;
-    this.isKerberosEnabled = isKerberosEnabled;
   }
 
   public String getKdc() {
@@ -40,7 +34,4 @@ public final class KerberosProperties {
     return realm;
   }
 
-  public boolean isKerberosEnabled() {
-    return isKerberosEnabled;
-  }
 }

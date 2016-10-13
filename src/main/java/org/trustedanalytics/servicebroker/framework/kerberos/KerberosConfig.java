@@ -40,14 +40,9 @@ public class KerberosConfig {
   private String kdc;
 
   @Bean
-  @Profile(Profiles.CLOUD)
+  @Profile({Profiles.KERBEROS, Profiles.SIMPLE})
   public KerberosProperties getKerberosProperties() throws IOException {
-    if(!Strings.isNullOrEmpty(realm) && !Strings.isNullOrEmpty(kdc)) {
-      return new KerberosProperties(kdc, realm, true);
-    }
-    else {
-      return new KerberosProperties(kdc, realm, false);
-    }
+      return new KerberosProperties(kdc, realm);
   }
 
 }
