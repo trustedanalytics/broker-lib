@@ -74,19 +74,15 @@ public class ZookeeperStoreConfig {
   @Profile(Profiles.SIMPLE)
   @Qualifier(Qualifiers.BROKER_STORE)
   public ZookeeperClient getInsecureZkClientForBrokerStore() throws IOException, NoSuchAlgorithmException {
-    String digest = DigestAuthenticationProvider.generateDigest(
-        String.format("%s:%s", user, password));
-    List<ACL> acl = Arrays.asList(new ACL(ZooDefs.Perms.ALL, new Id("digest", digest)));
-    return new ZookeeperClientBuilder(zkClusterHosts, user, password, brokerStoreNode).withRootCreation(acl).build();
+    return new ZookeeperClientBuilder(zkClusterHosts, user, password, brokerStoreNode).withRootCreation(getAcl()).build();
   }
 
   @Bean(initMethod = "init", destroyMethod = "destroy")
   @Profile(Profiles.KERBEROS)
   @Qualifier(Qualifiers.BROKER_STORE)
-  public ZookeeperClient getSecureZkClientForBrokerStore() throws LoginException, KrbException, IOException {
+  public ZookeeperClient getSecureZkClientForBrokerStore() throws LoginException, KrbException, IOException, NoSuchAlgorithmException {
     this.loginToKerberos();
-    List<ACL> acl = Arrays.asList(new ACL(ZooDefs.Perms.ALL, new Id("sasl", user)));
-    return new ZookeeperClientBuilder(zkClusterHosts, user, password, brokerStoreNode).withRootCreation(acl).build();
+    return new ZookeeperClientBuilder(zkClusterHosts, user, password, brokerStoreNode).withRootCreation(getAcl()).build();
   }
 
   private void loginToKerberos() throws LoginException, KrbException {
@@ -95,6 +91,13 @@ public class ZookeeperStoreConfig {
         KrbLoginManagerFactory.getInstance().getKrbLoginManagerInstance(
             kerberosProperties.getKdc(), kerberosProperties.getRealm());
     loginManager.loginWithKeyTab(user, keytabPath);
+  }
+
+
+  private List<ACL> getAcl() throws NoSuchAlgorithmException {
+    String digest = DigestAuthenticationProvider.generateDigest(
+        String.format("%s:%s", user, password));
+    return Arrays.asList(new ACL(ZooDefs.Perms.ALL, new Id("digest", digest)));
   }
 
 }
